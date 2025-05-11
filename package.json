@@ -42,7 +42,9 @@
     "test:integration": "nx run-many --target=test:integration --exclude=@ballerine/common",
     "test:e2e": "nx run-many --target=test:e2e",
     "playwright:install": "nx run-many --target=playwright:install",
-    "dev": "nx run-many --target=dev --projects=@ballerine/workflows-service,@ballerine/backoffice-v2",
+  
+    "dev": "nx run-many --target=dev --projects=@ballerine/workflows-service,@ballerine/backoffice-v2,@ballerine/web-ui-sdk",
+
     "start": "nx run-many --target=start --projects=@ballerine/web-ui-sdk",
     "build": "nx run-many --target=build --projects=@ballerine/workflow-browser-sdk,@ballerine/workflow-core,@ballerine/workflow-node-sdk,@ballerine/rules-engine-lib,@ballerine/common,@ballerine/workflows-service,@ballerine/ui,@ballerine/blocks,@ballerine/react-pdf-toolkit",
     "web-ui-sdk:dev": "nx run @ballerine/web-ui-sdk:dev",

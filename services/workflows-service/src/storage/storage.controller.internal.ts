@@ -15,6 +15,7 @@ import { CurrentProject } from '@/common/decorators/current-project.decorator';
 import { AppLoggerService } from '@/common/app-logger/app-logger.service';
 import { HttpService } from '@nestjs/axios';
 import { getFileMetadata } from '@/common/get-file-metadata/get-file-metadata';
+import { ResolveFnOutput } from 'module';
 
 // Temporarily identical to StorageControllerExternal
 @swagger.ApiExcludeController()
@@ -97,6 +98,7 @@ export class StorageControllerInternal {
   // curl -v http://localhost:3000/api/v1/storage/content/1679322938093
   @common.Get('/content/:id')
   async fetchFileContent(
+    @CurrentProject() currentProjectId: TProjectId,
     @ProjectIds() projectIds: TProjectIds,
     @Param('id') id: string,
     @Res() res: Response,
@@ -114,6 +116,8 @@ export class StorageControllerInternal {
 
     res.set('Content-Type', mimeType || 'application/octet-stream');
 
-    return res.sendFile(filePath!);
+    return res.sendFile(filePath!, {
+      root: '/',
+    });
   }
 }
